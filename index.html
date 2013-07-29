@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			var uid="bad userid";
+
+			var informParent=function(data){
+				var id = "proxyframe",//The name of the frame
+				proxy = frames[id],
+				values = "uid=" + uid + "&message="+data,
+				//url = "http://dev.motorcraftecounter.com:91/images/script/ShopSupplies/informer.html?" +values;
+				//url = "http://test.turboii.com:90/images/script/ShopSupplies/informer.html?" +values;
+				url = "http://hgm.turboii.com/images/script/ShopSupplies/informer.html?" +values;
+
+				if(proxy){
+					proxy.location.href = url;
+				}else{
+					var iframe = document.createElement("iframe");
+					iframe.id = id;
+					iframe.name = id;
+					iframe.src = url;
+					iframe.style.display = "none";
+					document.body.appendChild(iframe);
+				}
+			};
+
+
+			(function($){
+
+				$(document).ready(function(){
+					var querystring = window.location.href.split("?")[1] || false;
+
+					if(!querystring || querystring.indexOf("session=") === -1){
+						return false;
+					}
+
+					uid=querystring.split('=')[1] || false;
+					//alert("node.js setup");
+					if(uid !== false){
+						var socket = io.connect('http://'+location.host+'/',{'connect timeout': 10000});
+
+						socket.on('connect', function(){
+							socket.emit('adduser', uid);
+							//alert("connect:"+uid);
+						});
+
+						socket.on('updatecart', function(server_uid,data) {
+							//unnecessary, just being causious
+							if(uid === server_uid){
+								informParent(data);
+							}
+						});
+					}
+				})
+
+			})(jQuery);
+		</script>
+	</head>
+	<body>
+		<div id="notifier"></div>
+	</body>
+</html>
