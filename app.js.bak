@@ -24,9 +24,7 @@ app.get('/', function (request, response) {
 app.get('/notifyclient/:id', function (request, response){
 	var socket=null;
 	var usersession = request.params.id;
-	alert('usersession: ' +usersession);
-alert('connections: ' +connections);
-alert('connections[usersession]: ' +connections[usersession]);
+	
 	if(connections && connections!==null && connections[usersession]){
 		socket = connections[usersession];
 		//for now the message is hard coded as success.
@@ -35,7 +33,7 @@ alert('connections[usersession]: ' +connections[usersession]);
 		response.end("fired updatecart uid:"+usersession+"\n");
 	}else{
 		response.writeHead(404, {"Content-Type": "text/plain"});
-		response.end("Testing: User not connected. Repeat call.\n");
+		response.end("User not connected. Repeat call.\n");
 	}
 });
 
