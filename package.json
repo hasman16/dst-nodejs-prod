@@ -1,9 +1,31 @@
 {
-     "name": "mukhin_chat",
-     "description": "example chat application with socket.io",
-     "version": "0.0.1",
-     "dependencies": {
-        "express": "",
-        "socket.io": ""
-     }
+  "name": "dst_nodejs_push",
+  "description": "ARI Makelim Node Server",
+  "version": "0.10.26",
+  "dependencies": {
+    "express": "",
+    "socket.io": "",
+    "logfmt": "^1.1.2"
+  },
+  "main": "app.js",
+  "engines": {
+  	"node":"0.10.26"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hasman16/dst-nodejs-prod.git"
+  },
+  "keywords": [
+    "ari"
+  ],
+  "author": "Ahmadou Ndoung M.",
+  "license": "none",
+  "bugs": {
+    "url": "https://github.com/hasman16/dst-nodejs-prod/issues"
+  },
+  "homepage": "https://github.com/hasman16/dst-nodejs-prod"
 }
