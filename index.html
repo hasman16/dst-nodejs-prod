@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript">
 			var uid="bad userid";
-
+			var sessionKey = "?"; // local session key
 			var informParent=function(data){
 				var id = "proxyframe",//The name of the frame
 				proxy = frames[id],
@@ -49,11 +49,17 @@
 						socket.on('updatecart', function(server_uid,data) {
 							//unnecessary, just being causious
 							if(uid === server_uid){
+								alert("sessionKey:" + server_uid + ", data: " + data);
 								informParent(data);
 							}
 						});
+						
+						socket.on('registered', function(server_uid, data) {
+							console.log("sessionKey: " + server_uid + "\n" +
+										"data: " + data);
+						});
 					}
-				})
+				});
 
 			})(jQuery);
 		</script>
