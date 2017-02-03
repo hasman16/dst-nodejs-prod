@@ -1,6 +1,7 @@
 var express = require('express')
   , app = express()
   , http = require('http')
+  , logfmt = require('logfmt')
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 
@@ -19,7 +20,7 @@ server.listen(port);
 app.get('/', function (request, response) {
 	response.sendfile(__dirname + '/index.html');
 });
-
+app.use(logfmt.requestLogger());
 // routing
 app.get('/notifyclient/:id', function (request, response){
 	var socket=null;
@@ -41,7 +42,10 @@ app.get('/notifyclient/:id', function (request, response){
 
 // usernames which are currently connected to the chat
 //var usernames = {};
-
+var port = Number(process.env.PORT || 5000); // if no port is detected, default to 5000
+server.listen(port, function() {
+	console.log("Listening on " + port);
+});
 // list of connections
 var connections={};
 
@@ -54,7 +58,7 @@ io.sockets.on('connection', function (socket) {
 		// add the client's username to the global list
 		connections[sessionkey] = socket;
 		// echo to client they've connected
-		socket.emit('updatechat', 'SERVER', 'you have connected');
+		socket.emit('updatechat', 'SERVER', 'you are connected');
 	});
 
 	// when the user disconnects.. perform this
