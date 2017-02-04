@@ -10,11 +10,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['My Application'],
+  app_name: ['dst-nodejs-prod'],
   /**
    * Your New Relic license key.
    */
-  license_key: 'license key here',
+  license_key: '3ec8e261d866f2256670302c234120ec080469fe',
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
