@@ -1,15 +1,17 @@
 {
   "name": "dst_nodejs_push",
   "description": "ARI Makelim Node Server",
-  "version": "0.10.26",
+  "version": "1.1.0",
   "dependencies": {
-    "express": "",
+    "express": "^4.13.3",
     "socket.io": "",
+    "semver": "^5.3.0",
     "logfmt": "^1.1.2"
   },
   "main": "app.js",
   "engines": {
-  	"node":"0.10.26"
+  	"node":"7.5.0",
+    "npm":"4.1.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,12 +22,15 @@
     "url": "https://github.com/hasman16/dst-nodejs-prod.git"
   },
   "keywords": [
-    "ari"
+    "ari",
+    "makelim",
+    "partsmart"
   ],
   "author": "Ahmadou Ndoung M.",
-  "license": "none",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hasman16/dst-nodejs-prod/issues"
+    "url": "https://github.com/hasman16/dst-nodejs-prod/issues",
+    "email" : "hasman16@gmail.com" 
   },
-  "homepage": "https://github.com/hasman16/dst-nodejs-prod"
+  "homepage": "https://github.com/hasman16/dst-nodejs-prod#readme"
 }
