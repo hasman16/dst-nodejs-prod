@@ -19,7 +19,7 @@ server.listen(port);
 app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/index.html');
 });
-app.use(logfmt.requestLogger());
+//app.use(logfmt.requestLogger());
 // routing
 app.get('/notifyclient/:id', function (request, response){
 	var socket=null;
