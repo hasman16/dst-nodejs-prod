@@ -19,7 +19,7 @@ server.listen(port);
 
 // routing
 app.get('/', function (request, response) {
-	response.sendfile(__dirname + '/index.html');
+	response.sendFile(__dirname + '/index.html');
 });
 app.use(logfmt.requestLogger());
 // routing
