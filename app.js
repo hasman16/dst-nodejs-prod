@@ -1,8 +1,6 @@
-//require('newrelic');
 var express = require('express')
   , app = express()
-  , http = require('http')
-  , logfmt = require('logfmt')
+  , http = require('http')  
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 
