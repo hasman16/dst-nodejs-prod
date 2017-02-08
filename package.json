@@ -8,8 +8,8 @@
   },
   "main": "app.js",
   "engines": {
-  "node":"6.9.5",
-   "npm":"3.10.10"
+  "node":"0.10.15",
+   "npm":"3.10.x"
   },
   "devDependencies": {},
   "scripts": {
