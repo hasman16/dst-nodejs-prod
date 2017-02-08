@@ -11,7 +11,6 @@ io.set('transports', [
   , 'xhr-polling'
   , 'flashsocket'
 ]);
-//alert('test');
 var port = process.env.PORT || 3000; // if no port is detected, default to 3000
 server.listen(port);
 
@@ -24,9 +23,6 @@ app.get('/', function (request, response) {
 app.get('/notifyclient/:id', function (request, response){
 	var socket=null;
 	var usersession = request.params.id;
-	//alert('usersession: ' +usersession);
-//alert('connections: ' +connections);
-//alert('connections[usersession]: ' +connections[usersession]);
 	if(connections && connections!==null && connections[usersession]){
 		socket = connections[usersession];
 		//for now the message is hard coded as success.
