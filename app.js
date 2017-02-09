@@ -4,13 +4,13 @@ var express = require('express')
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 
-io.set('transports', [
+/*io.set('transports', [
     'websocket'
   , 'jsonp-polling'
   , 'htmlfile'
   , 'xhr-polling'
   , 'flashsocket'
-]);
+]);*/
 var port = process.env.PORT || 3000; // if no port is detected, default to 3000
 server.listen(port);
 
@@ -43,7 +43,60 @@ server.listen(port, function() {
 });
 // list of connections
 var connections={};
-
+// 'this' is the socket
+io.on('connection', function (socket) {
+	// when the client emits 'adduser', this listens and executes
+	socket.on('adduser', function(sessionkey){
+		// we store the username in the socket session for this client
+		socket.sessionkey = sessionkey;
+		// add the client's username to the global list
+		connections[sessionkey] = socket;
+		// echo to client they've connected
+		socket.emit('updatechat', 'SERVER', 'you are connected');
+	});
+	socket.on('disconnect', function() {
+		if (this.sessionkey != "undefined") {
+			delete connections[this.sessionkey];
+		}
+		console.log("**** disconnected session: " + this.sessionkey);
+	});
+	
+	socket.on('error', function(err) {
+		console.log("**** session error: " + this.sessionkey + "\n    error: " + err);
+	});
+	
+	socket.on('close', function() {
+		console.log("**** closed socket: " + this.sessionkey);
+	});
+	
+	socket.on('connection_failed', function() {
+		console.log("**** connection to browser failed for session: " + this.sessionkey);
+	});
+	
+	// listen for client session registration and echo registration success 
+	socket.on('register', function(sessionkey, callback) {
+		if (callback != null) {
+			callback('ok');
+		}
+		socket.sessionkey = sessionkey;
+		socket.expired = false;
+		connections[sessionkey] = socket;
+		
+		console.log("**** registered session: " + sessionkey);
+		
+		/* cleanup 
+		for (var connection in connections) {
+			console.log(connection);
+		} */
+	});
+	
+	socket.on('unregister', function() {
+		console.log("**** unregistered session: " + this.sessionkey);
+		socket.disconnect();
+	});
+	
+});
+/*
 io.sockets.on('connection', function (socket) {
 
 	// when the client emits 'adduser', this listens and executes
@@ -94,3 +147,4 @@ io.sockets.on('connection', function (socket) {
 	
 	*/
 });
+*/
