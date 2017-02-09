@@ -3,12 +3,12 @@
   "description": "ARI Makelim Node Server",
   "version": "1.1.0",
   "dependencies": {
-    "express": "^4.10.x",
+    "express": "^4.14.x",
     "socket.io": "^1.4.5"     
   },
   "main": "app.js",
   "engines": {
-  "node":"6.9.5",
+  "node":"*",
   "npm": ""
   },
   "devDependencies": {},
