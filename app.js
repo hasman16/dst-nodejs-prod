@@ -3,11 +3,12 @@ var app = express();
 //var http = require('http');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var logfmt = require('logfmt');
 // var server = http.createServer(app);
  //var io = require('socket.io').listen(server);
 //Get port
 var port = Number(process.env.PORT || 3000); // if no port is detected, default to 5000
-app.listen(port, function() {
+http.listen(port, function() {
 	console.log("Listening on " + port);
 });
 /*server.listen(port, function() {
