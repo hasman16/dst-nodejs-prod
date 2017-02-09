@@ -4,11 +4,12 @@
   "version": "1.1.0",
   "dependencies": {
     "express": "^4.14.x",
-    "socket.io": "^1.4.5"     
+    "socket.io": "^1.4.5",
+    "logfmt": "^1.1.2"
   },
   "main": "app.js",
   "engines": {
-  "node":"*",
+  "node":"6.9.5",
   "npm": ""
   },
   "devDependencies": {},
