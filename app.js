@@ -31,8 +31,9 @@ app.get('/', function (request, response) {
 */
 app.get('/', function (request, response) {
 	response.send("ARI Makelim Push Server");
-	response.send("request: " request);
-	response.send("response: " response);
+	console.log("**** request: " + this.request);
+	console.log("**** response: " + this.response);
+	
 });
 
 //app.use(logfmt.requestLogger());
