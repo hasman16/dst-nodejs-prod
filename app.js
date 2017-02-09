@@ -11,8 +11,8 @@ var express = require('express')
   , 'xhr-polling'
   , 'flashsocket'
 ]);*/
-var port = process.env.PORT || 3000; // if no port is detected, default to 3000
-server.listen(port);
+//var port = process.env.PORT || 3000; // if no port is detected, default to 3000
+//server.listen(port);
 
 // routing
 app.get('/', function (request, response) {
@@ -146,5 +146,5 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	*/
-});
-*/
+//});
+
