@@ -15,9 +15,15 @@ var express = require('express')
 //server.listen(port);
 
 // routing
+/*
 app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/index.html');
 });
+*/
+app.get('/', function (request, response) {
+	response.send("ARI Makelim Push Server");
+});
+
 //app.use(logfmt.requestLogger());
 // routing
 app.get('/notifyclient/:id', function (request, response){
