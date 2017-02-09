@@ -42,7 +42,19 @@
 						var socket = io.connect('http://'+location.host+'/',{'connect timeout': 10000});
 
 						socket.on('connect', function(){
-							socket.emit('register', uid);
+							//socket.emit('register', uid);
+							
+							    if (socket != null) {
+								  socket.emit('register', uid, function(data) {
+									if (data == "ok") {
+									      loaded = true;
+									      console.log("session registered with push server\n" +
+										    "sessionKey: " + uid + "\n" +
+										    "ack: " + data);
+									}
+								  });							    
+						      }
+
 							console.log("connect: "+uid);
 						});
 
@@ -54,10 +66,10 @@
 							}
 						});
 						
-						socket.on('registered', function(server_uid, data) {
+						/*socket.on('registered', function(server_uid, data) {
 							console.log("sessionKey: " + server_uid + "\n" +
 										"data: " + data);
-						});
+						});*/
 					}
 				});
 
