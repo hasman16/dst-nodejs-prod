@@ -22,17 +22,18 @@ var logfmt = require('logfmt');
 //server.listen(port);
 
 // routing
-
+/*
 app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/index.html');
 });
-
+*/
 app.use(logfmt.requestLogger());
 
 app.get('/', function (request, response) {
-	response.send("ARI Makelim Push Server");
-	console.log("**** request: " + request);
-	console.log("**** response: " + response);
+	//response.send("ARI Makelim Push Server");
+	response.sendFile(__dirname + '/index.html');
+	//console.log("**** request: " + request);
+	//console.log("**** response: " + response);
 	
 });
 
