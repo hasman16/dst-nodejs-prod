@@ -42,14 +42,14 @@
 						var socket = io.connect('http://'+location.host+'/',{'connect timeout': 10000});
 
 						socket.on('connect', function(){
-							socket.emit('adduser', uid);
-							//alert("connect:"+uid);
+							socket.emit('register', uid);
+							console.log("connect: "+uid);
 						});
 
 						socket.on('updatecart', function(server_uid,data) {
 							//unnecessary, just being causious
 							if(uid === server_uid){
-								alert("sessionKey:" + server_uid + ", data: " + data);
+								console.log("sessionKey: " + server_uid + ", data: " + data);
 								informParent(data);
 							}
 						});
