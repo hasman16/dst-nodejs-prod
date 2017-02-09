@@ -22,11 +22,11 @@ var logfmt = require('logfmt');
 //server.listen(port);
 
 // routing
-/*
+
 app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/index.html');
 });
-*/
+
 app.use(logfmt.requestLogger());
 
 app.get('/', function (request, response) {
