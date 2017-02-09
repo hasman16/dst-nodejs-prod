@@ -1,16 +1,13 @@
-var express = require('express');
-var app = express();
+//var express = require('express');
+//var app = express();
 //var http = require('http');
+var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var logfmt = require('logfmt');
 // var server = http.createServer(app);
  //var io = require('socket.io').listen(server);
-//Get port
-var port = Number(process.env.PORT || 3000); // if no port is detected, default to 5000
-http.listen(port, function() {
-	console.log("Listening on " + port);
-});
+
 /*server.listen(port, function() {
 	console.log("Listening on " + port);
 });*/
@@ -30,10 +27,12 @@ app.get('/', function (request, response) {
 	response.sendFile(__dirname + '/index.html');
 });
 */
+app.use(logfmt.requestLogger());
+
 app.get('/', function (request, response) {
 	response.send("ARI Makelim Push Server");
-	console.log("**** request: " + this.request);
-	console.log("**** response: " + this.response);
+	console.log("**** request: " + request);
+	console.log("**** response: " + response);
 	
 });
 
@@ -88,7 +87,11 @@ app.get('/listSessions293', function (request, response) {
 // usernames which are currently connected to the chat
 //var usernames = {};
 
-
+//Get port
+var port = Number(process.env.PORT || 3000); // if no port is detected, default to 5000
+http.listen(port, function() {
+	console.log("Listening on " + port);
+});
 // list of connections
 var connections={};
 // 'this' is the socket
@@ -124,14 +127,14 @@ io.on('connection', function (socket) {
 		
 		console.log("**** registered session: " + usersession);
 		// when the client emits 'adduser', this listens and executes
-	socket.on('adduser', function(usersession){
+	//socket.on('adduser', function(usersession){
 		// we store the username in the socket session for this client
 		//socket.usersession = usersession;
 		// add the client's username to the global list
 		//connections[usersession] = socket;
 		// echo to client they've connected
-		socket.emit('updatechat', 'SERVER', 'you are connected');
-	});
+		//socket.emit('updatechat', 'SERVER', 'you are connected');
+	//});
 		
 		/* cleanup 
 		for (var connection in connections) {
